@@ -4,7 +4,6 @@ const https= require('https');
 const fs= require('fs');
 var session = require('express-session');
 const bodyParser= require("body-parser");
-const encoder= bodyParser.urlencoded();
 const app = express();
 const mainRouter=require('./routes/index');
 const mainRouter1=require('./routes/api-generation');
@@ -65,7 +64,7 @@ const sslserver= https.createServer({
   key: fs.readFileSync(path.join(__dirname,'cert','key.pem')),
   cert:fs.readFileSync(path.join(__dirname,'cert','cert.pem'))
 },app)
-let port=4500;
+let port=3000;
 sslserver.listen(port , ["192.168.179.60", "localhost" ],()=>{
      console.log(`Listening to requests on http://localhost:${port}`);
   }); 

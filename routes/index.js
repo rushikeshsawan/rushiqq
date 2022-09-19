@@ -3,7 +3,6 @@ const router = express.Router();
 var database = require('../database');
 const bodyParser = require("body-parser");
 const encoder = bodyParser.urlencoded();
-var cookieParser = require('cookie-parser');
 const moment = require('moment');
 var qr = require('qr-image');
 const crypto = require("crypto")
@@ -353,6 +352,18 @@ async function getproductdetails(productiddd, addre) {
 
 
 router.get("/", function (req, res) {
+
+  res.render("index", {
+    error: "",
+    session: req.session,
+    status: ""
+  });
+
+  res.end();
+  
+  // console.log(req.session);
+});
+router.get("/favicon.ico", function (req, res) {
 
   res.render("index", {
     error: "",
