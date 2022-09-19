@@ -4,9 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "devStart": "nodemon login.js"
-  },
+    "start": "node login.js"
+},
   "author": "",
   "license": "ISC",
   "dependencies": {
