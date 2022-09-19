@@ -1,0 +1,195 @@
+<% 
+if(session.user_id){
+  %>
+    <script> document.location.href = '/welcome' </script>
+  <% 
+}else{
+  %>
+  
+
+
+<!DOCTYPE html>
+<!-- Created by CodingLab |www.youtube.com/c/CodingLabYT-->
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="UTF-8">
+    <!--<title> Login and Registration Form in HTML & CSS | CodingLab </title>-->
+    <link rel="stylesheet" href="/assets/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css">
+
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js">
+    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js">
+    </script>
+
+    <!-- Fontawesome CDN Link -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  
+    <style>
+      .animated {
+        
+        
+         -webkit-animation-duration: 5s;animation-duration: 5s;
+         -webkit-animation-fill-mode: both;animation-fill-mode: both;
+      }
+      
+      @-webkit-keyframes fadeOut {
+         0% {opacity: 1;}
+         100% {opacity: 0;}
+      }
+      
+      @keyframes fadeOut {
+         0% {opacity: 1;}
+         100% {opacity: 0;}
+      }
+      
+      .fadeOut {
+         -webkit-animation-name: fadeOut;
+         animation-name: fadeOut;
+      }
+   </style>
+  
+  
+  </head>
+<body >
+  <div class="container">
+    <input type="checkbox" id="flip">
+    <div class="cover">
+      <div class="front">
+        <img src="/assets/Images/womenusinglaptop.png" alt="">
+        <div class="text">
+          <span class="text-1">Go Green Go Paperless <br> AUTIC</span>
+          <span class="text-2">Let's get started</span>
+        </div>
+      </div>
+      <div class="back">
+        <img class="backImg" src="assets/Images/womenusinglaptop.png" alt="">
+        <div class="text">
+          <span class="text-1">Complete miles of journey <br> with one step</span>
+          <span class="text-2">Let's get started</span>
+        </div>
+      </div>
+    </div>
+    <div class="forms">
+        <div class="form-content">
+          <div class="login-form">
+            <div class="title">Login</div>
+          <form action="/login" id="login"  method="post">
+            
+            <div class="input-boxes">
+              <div class="input-box">
+                <input type="text" name="email" placeholder="Enter your email" required>
+              </div>
+              <div class="input-box">
+                <input type="password" name="password" placeholder="Enter your password" required>
+                <input type="hidden" id="hidacc" name="acc" value="undefined">
+               
+              </div>
+              <!-- <div class="text"><a href="#">Forgot password?</a></div> -->
+              <div class="button input-box">
+                <input type="submit" id="loggedin" value="Submit">
+                
+              </div>
+              <h5 class = "animated fadeOut" style="color:red;"><strong><%= error %></strong></h5>
+              <h5 class = "animated fadeOut" style="color:green;"><strong><%= status %></strong></h5>
+              <div class="text sign-up-text">Don't have an account? <label for="flip">Sigup now</label></div>
+            </div>
+        </form>
+      </div>
+        <div class="signup-form">
+          <div class="title">Signup</div>
+        <form action="/signup" method="post" id="signup_form">
+            <div class="input-boxes">
+              <div class="input-box">
+                <input type="text" name="name" id="name" placeholder="Enter your name" required>
+              </div>
+              <div class="input-box">
+                <input type="text" name="email" id="email" placeholder="Enter your email" required>
+              </div>
+              <div class="input-box">
+                <input type="password"name="pass" id="pass" placeholder="Enter your password" required>
+              </div>
+              
+              <div class="button input-box">
+                <input type="submit" id="signup" value="Submit">
+              </div>
+              
+              <div class="text sign-up-text">Already have an account? <label for="flip">Login now</label></div>
+            </div>
+      </form>
+    </div>
+     
+    </div>
+    </div>
+    
+  </div>
+  <div id="response"></div> 
+  <script>
+$(document).ready(function(){
+  // $("#login").submit(function(e){
+    //   e.preventDefault();
+    // $('#loggedin').attr('disabled','disabled');
+
+   
+    
+    if(window.ethereum!="undefined"){
+      async function rushi(){
+        const accounts= await ethereum.request({method:"eth_requestAccounts"});
+        
+          $("#hidacc").val(accounts[0]);
+          // $('#loggedin').removeAttr('disabled');
+
+      }
+      rushi();
+      
+    
+  // console.log();
+
+
+      
+      // var account= accounts[0];
+      // var name = $("#name").val();
+      // var email = $("#email").val();
+      // var pass = $("#pass").val();
+
+      // if(name != "" || email != "" || pass!=""){
+      
+      // // $('#response').html($('#submit_form').serialize());
+      //   $.ajax({
+      //     url: "http://localhost:4500/login",
+      //     type: "POST",
+      //     data : {name: name, email: email, pass: pass, acc: account},
+          
+      //     success: function(data){
+      //      console.log(data);
+      //       // $('#signup_form').trigger("reset");
+      //       // $('#response').fadeIn();
+      //       // $('#response').removeClass('error-msg').addClass('success-msg').html(data);
+      //       // setTimeout(function(){
+      //       //   $('#response').fadeOut("slow");
+      //       // },4000);
+      //     }
+    //     });
+    //   }
+    // }else{
+      
+    }else{
+      alert("please install metamask.!!");
+
+    }
+  
+});
+   
+
+
+  </script>
+</body>
+</html>
+
+<%
+}
+
+%>

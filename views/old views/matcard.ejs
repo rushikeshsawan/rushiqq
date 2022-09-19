@@ -1,0 +1,126 @@
+<div class="row">
+  <!--  -->
+  <div class="col s6">
+    <div class="card small">
+
+      <div class="card-content center-align">
+        <h1 class="card-title center-align"><strong>Add New Product</strong></h1><br>
+
+
+        <button type="button" data-target="modal1" class="center-align btn modal-trigger">Add New Product</button>
+
+      </div>
+
+    </div>
+  </div>
+  <!-- <h1>hello hell</h1> -->
+
+  <div class="col s6">
+    <div id="product-details" class="card ">
+
+      <div class="card-content" id="product-details">
+        <h5 class=" center-align"><strong> Get Product Details.!</strong></h5>
+        
+        <h5 class="card-title center-align"><strong>Product Id:  <%= pid %></strong></h5>
+        <form action="/productdetails" method="post" class="center-align">
+
+          <input type="text" placeholder="Enter Produuct ID here." name="productid">
+          <button type="submit" href="#profile-section1" class="btn btn-dark center-align"> submit</button>
+        </form>
+
+        <div id="hidethis">
+
+          <h6>
+            <spam class="text-dark">Name: </spam>
+            <%= pname %>
+          </h6>
+          <hr>
+          <h6>
+            <spam class="text-dark">Mobile No:</spam>
+            <%= pmobile %>
+          </h6>
+          <hr>
+          <h6>
+            <spam class="text-dark">Email:</spam>
+            <%= pemail %>
+          </h6>
+          <hr>
+          <h6>
+            <spam class="text-dark">Manufacture date:</spam>
+            <%= pmau %>
+          </h6>
+          <hr>
+          <h6>
+            <spam class="text-dark"> Warranty Start:</spam>
+            <%= pws %>
+          </h6>
+          <hr>
+          <h6>
+            <spam class="text-dark">Warranty End:</spam>
+            <%= pwe %>
+          </h6>
+          <h6>
+            <spam class="text-dark">Warranty Period:</spam>
+            <%= period %> Months
+          </h6>
+          <h6>
+            <spam class="text-dark">Product Color:</spam>
+            <%= color %>
+          </h6>
+          <h6>
+            <spam class="text-dark">Product Weight:</spam>
+            <%= weight %>
+          </h6>
+          <h6>
+            <spam class="text-dark">Product Length:</spam>
+            <%= length %>
+          </h6>
+
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+</div>
+  <div class="row">
+    <div class="col s6">
+      <div class="card small">
+
+        <div class="card-content ">
+          <h1 class="card-title center-align"><strong>Total Product Sold</strong></h1>
+          <hr>
+
+
+          <h4 class="card-body center-align"><strong>
+              <%= sold %>
+            </strong></h4>
+
+        </div>
+
+      </div>
+    </div>
+    <div class="col s6">
+      <div class="card small">
+
+        <div class="card-content ">
+          <h1 class="card-title center-align"><strong>Total Product Unsold</strong></h1>
+          <hr>
+
+
+          <h4 class="card-body center-align"><strong>
+            <%= unsold %>
+            </strong></h4>
+
+        </div>
+
+      </div>
+    </div>
+
+
+
+  </div>
+
+
+
+

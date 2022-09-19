@@ -1,0 +1,232 @@
+<div class="container-fluid py-4">
+      <div class="row">
+        <div class="col-xl-3 col-sm-6 mb-xl-0 mb-4">
+          
+        </div>
+        <div class="col-xl-3 col-sm-6 mb-xl-0 mb-4">
+          <div class="card">
+            <div class="card-body p-3">
+              <div class="row">
+                <div class="col-8">
+                  <!-- <a href="listsold" style="display:block; width:100px; height:40px;"> -->
+                  <div class="numbers" onclick="window.location.href = 'listsold';" style="cursor: pointer;">
+                    <p class="text-sm mb-0 text-uppercase font-weight-bold text-center">Total Sold</p>
+                    <h5 class="font-weight-bolder text-center" id="soldnum">
+                      <%= sold %>
+                    </h5>
+                    <p class="mb-0">
+                      <!-- <span class="text-success text-sm font-weight-bolder">+3%</span> -->
+                      
+                    </p>
+                  </div>
+                <!-- </a> -->
+                </div>
+                <div class="col-4 text-end">
+                  <div class="icon icon-shape bg-gradient-danger shadow-danger text-center rounded-circle">
+                    <i class="ni ni-world text-lg opacity-10" aria-hidden="true"></i>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-xl-3 col-sm-6 mb-xl-0 mb-4">
+          <div class="card">
+            <div class="card-body p-3">
+              <div class="row">
+                <div class="col-8">
+                  <div class="numbers" onclick="window.location.href = 'listunsold';" style="cursor: pointer;">
+                    <!-- <a style="display:block; width:100px; height:40px;"> -->
+                    <p class="text-sm mb-0 text-uppercase text-center font-weight-bold">Total unsold</p>
+                    <h5 class="font-weight-bolder text-center" id="unsoldnum">
+                      <%= unsold %>
+                    </h5>
+                    <p class="mb-0">
+                      
+                    </p>
+                  <!-- </a> -->
+                  </div>
+                </div>
+                <div class="col-4 text-end">
+                  <div class="icon icon-shape bg-gradient-success shadow-success text-center rounded-circle">
+                    <i class="ni ni-paper-diploma text-lg opacity-10" aria-hidden="true"></i>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-xl-3 col-sm-6">
+          
+        </div>
+      </div>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <div class="row mt-4">
+        <div class="col-lg-6 mb-lg-0 mb-4">
+        <div id="product-details" class="card pt-5">
+
+<div class="card-content text-center" id="product-details">
+  <h5 class=" text-center"><strong> Get Product Details.!</strong></h5>
+  
+  <!-- <h5 class="card-title center-align" id="pid" ><strong>Product Id:  <%= pid %></strong></h5> -->
+  <form action="/productdetails" method="post" class="center-align">
+    <div class="row g-3 align-items-center">
+
+    <div class="col-auto offset-4 mb-3">
+    <input type="text" class="form-control" placeholder="Enter Product ID here." name="productid"></div></div>
+    <button type="submit" href="#profile-section1" class="btn btn-dark center-align"> submit</button>
+  </form>
+  <div id="spacehide" style="display: none;">
+<br><br>
+<br>
+</div>
+  <div id="hidethis">
+
+    <h6>
+      <spam id="pname"  class="text-dark">Name: </spam>
+     
+    </h6>
+    <hr>
+    <h6>
+      <spam id="rcurrent" class="text-dark">Rated Current:</spam>
+     
+    </h6>
+    <hr>
+    <h6>
+      <spam id="soperation" class="text-dark">Switch Operation: </spam>
+     
+    </h6>
+    <hr>
+    <h6>
+      <spam id="msize" class="text-dark">Module Size:</spam>
+     
+    </h6>
+    <hr>
+    <h6>
+      <spam id="material" class="text-dark"> Material:</spam>
+     
+    </h6>
+    <hr>
+    <h6>
+      <spam id="coo" class="text-dark">Country Of Origin:</spam>
+     
+    </h6>
+    <hr>
+    <h6>
+      <spam id="pcolor" class="text-dark">Product Color: </spam>
+     
+    </h6>
+    <hr>
+  
+    <h6>
+      <spam id="pweight" class="text-dark">Product Weight:</spam>
+     
+    </h6>
+    <hr>
+    <h6>
+      <spam id="plength" class="text-dark">Product Length:</spam>
+      
+    </h6><hr>
+    <h6>
+      <spam id="manudate" class="text-dark">Manufacture Date:</spam>
+     
+    </h6>
+    <hr> <h6>
+      <spam id="warr_start" class="text-dark">Warranty Start:</spam>
+     
+    </h6>
+    <hr> <h6>
+      <spam id="warr_end" class="text-dark">Warranty End:</spam>
+     
+    </h6>
+    <hr> <h6>
+      <spam id="pperiod" class="text-dark">Warranty Period:</spam>
+     
+    </h6>
+    <hr>
+
+  </div>
+
+</div>
+</div>
+        </div>
+        <div class="col-lg-6">
+        <div class="card text-center">
+
+<div class="card-content pt-5 center-align">
+  <h5 class="card-title center-align"><strong>Add New Product</strong></h5><br>
+
+
+  <button type="button" data-bs-toggle="modal" data-backdrop="static" data-keyboard="false" data-bs-target="#addnewproductmodal" class="btn btn-dark center-align center-align btn modal-trigger">Add New Product</button>
+
+</div>
+<br><br>
+<br><br>
+<br>
+
+</div>
+        </div>
+      </div>
+      <div class="row mt-4">
+        <div class="col-lg-6 offset-3">
+          <div class="card text-center">
+  
+  <div class="card-content pt-5 center-align" >
+    <h5 class="card-title center-align"><strong>Add Products in Batch</strong></h5><br>
+  
+  
+    <button type="button" data-bs-toggle="modal" data-bs-target="#addbatchproductmodal" class="btn btn-dark center-align center-align btn modal-trigger">Add Product</button>
+  
+  </div>
+  <br><br>
+  <br><br>
+  <br>
+  
+  </div>
+          </div>
+
+        </div>
+       
+      </div>
+      <br><br><br><br>
+      <br><br><br><br>
+      <br><br><br><br>
+      <br><br><br><br>
+      <footer class="footer pt-3  ">
+        <div class="container-fluid">
+          <div class="row align-items-center justify-content-lg-between">
+            <div class="col-lg-6 mb-lg-0 mb-4">
+              <div class="copyright text-center text-sm text-muted text-lg-start">
+                © <script>
+                  document.write(new Date().getFullYear())
+                </script>,
+                made with <i class="fa fa-heart"></i> by
+                <a href="https://www.creative-tim.com" class="font-weight-bold" target="_blank">Autic</a>
+                for a better web.
+              </div>
+            </div>
+            <div class="col-lg-6">
+              <ul class="nav nav-footer justify-content-center justify-content-lg-end">
+                <li class="nav-item">
+                  <a href="https://www.creative-tim.com" class="nav-link text-muted" target="_blank">Amron</a>
+                </li>
+                <li class="nav-item">
+                  <a href="https://www.creative-tim.com/presentation" class="nav-link text-muted" target="_blank">About Us</a>
+                </li>
+                <li class="nav-item">
+                  <a href="https://www.creative-tim.com/blog" class="nav-link text-muted" target="_blank">Blog</a>
+                </li>
+                <li class="nav-item">
+                  <a href="https://www.creative-tim.com/license" class="nav-link pe-0 text-muted" target="_blank">License</a>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </footer>
+    </div>
+    </main>

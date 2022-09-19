@@ -1,0 +1,306 @@
+<style>
+    .modal {
+        width: 80% !important;
+        height: 100% !important;
+    }
+</style>
+<div class="container center-align m-6">
+
+
+
+
+
+</div>
+
+
+
+
+<div class="container mb-5 center-align m-5">
+    <br><br><br><br><br>
+    <!-- <div class="card small text-center mt-5"> -->
+
+    <h4><strong>Scan Your QR- Code To Start Warranty Period.!</strong></h4>
+    <video id="qr-video" height="75%" width="75%"></video>
+    <!-- </div> -->
+</div>
+<br><br>
+<br>
+<br>
+<br>
+<br>
+
+
+<span id="cam-qr-result"></span>
+
+<span id="cam-qr-result-timestamp"></span>
+
+
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+<script type="module">
+
+     <% if (status == true) {
+%>
+            let val = `Warranty Successfully Generated for ` + <%= productid %> ;
+        swal(val, "ThankYou", "success");
+<%
+} else if (status == "false") { %>
+        let val = `Warranty Already Generated for product id= ` +<%= productid %> +`  or product doesnt exist! `;
+    %>
+            swal(val, "Sorry", "error");
+        <%
+    } %>
+        $('#hideme').hide();
+
+    import QrScanner from "./assets/qr-config/config/qr-scanner.min.js";
+
+    const video = document.getElementById('qr-video');
+    const videoContainer = document.getElementById('video-container');
+    const camHasCamera = document.getElementById('cam-has-camera');
+    const camList = document.getElementById('cam-list');
+
+    const flashToggle = document.getElementById('flash-toggle');
+    const flashState = document.getElementById('flash-state');
+    const camQrResult = document.getElementById('cam-qr-result');
+    const camQrResultTimestamp = document.getElementById('cam-qr-result-timestamp');
+    const fileSelector = document.getElementById('file-selector');
+    const fileQrResult = document.getElementById('file-qr-result');
+
+    // scanner.stop();
+    function setResult(label, result) {
+        console.log(result.data);
+        let val = result.data;
+        if (val.includes("productid")) {
+            val = val.split("=");
+            //    console.log(val);
+            let productid = val[1];
+            let jsonn = {
+                uid: productid
+            };
+            // jsonn=JSON.parse(jsonn);
+            console.log(jsonn);
+            $.ajax({
+                type: "POST",
+                data: JSON.stringify(jsonn),
+                contentType: 'application/json; charset=utf-8',
+                dataType: 'json',
+                async: false,
+                url: "https://localhost:4500/getproductdetails",
+                success: function (data) {
+                    function timeConverter(timee) {
+                        // timee=1662535771 *1000;
+                        if(timee==""){
+                            return "-";
+                        }else{
+
+                       
+                        timee = (parseInt(timee) * 1000);
+                        console.log(timee);
+                        var s = new Date(timee).toLocaleDateString("en-IN");
+                        var s1 = new Date(timee).toLocaleTimeString("en-IN");
+                        if (s == "invalid date" && s1 == "invalid date") {
+                            return "-";
+                        }
+                        return (s + " " + s1);
+                    }
+                    }
+                    // console.log(data.success);
+                    // console.log(data.error);
+                    data = data.success;
+                    console.log(data);
+                    // data = data['sucess'];
+                    // let 
+                    // let 
+                    // let 
+                    // console.log($('#bname').html());
+                    let warrstart = timeConverter(data[0]['warr_start']);
+                    let warrend = timeConverter(data[0]['warr_end']);
+                    let maudate = timeConverter(data[0]['manu_date']);
+                    console.log("warrstart->" + data[0]['warr_start']);
+                    // if(isNaN(warrstart)){
+                    //     warrstart="-";
+                    // }
+                    // if(isNaN(warrend)){
+                    //     warrend="-";
+                    // }
+
+                    $('#bname').html(data[0]['bname']);
+                    $('#email').html(data[0]['email']);
+                    $('#manu_date').html(maudate);
+                    $('#mobile').html(data[0]['mobile']);
+                    $('#product_id').html(data[0]['product_id']);
+                    $('#warr_end').html(warrend);
+                    $('#warr-start').html(warrstart);
+                    $('#period').html(data[0]['period']);
+                    $('#color').html(data[0]['color']);
+                    $('#weight').html(data[0]['weight']);
+                    $('#length').html(data[0]['length']);
+
+
+                },
+                error: function (error) {
+                    console.log("error here " + error);
+                }
+            });
+        //    console.log("warr start here-> "+ $("#warr-start").html());
+            if ($('#warr-start').html() == "-"){
+                $('#claim-warranty').show();
+
+            } else {
+                $('#claim-warranty').hide();
+
+            }
+
+
+
+
+
+            // $.ajax({
+            //     type: "POST",
+            //     url: "https://localhost:4500/getproductdetails",
+            //     data: jsonn,
+            //     dataType: 'application/json',
+            //     success: function (success) {
+            //         console.log(success);
+            //         alert(success);
+
+
+            //     },
+            //     error: function(error){
+            //         console.log(error);
+            //         alert(error);
+            //     }
+            // });
+            // return;
+
+            label.highlightTimeout = setTimeout(() => label.style.color = 'inherit', 100);
+            video.style.display = "none";
+
+
+
+            $('#modal1').modal('open');
+            scanner.stop();
+
+            $('#modal1').modal({
+                //     // dismissible: false, // Modal can be dismissed by clicking outside of the modal
+                //     opacity: .50, // Opacity of modal background
+                //     inDuration: 300, // Transition in duration
+                //     outDuration: 200, // Transition out duration
+                //     startingTop: '4%', // Starting top style attribute
+                //     endingTop: '10%', // Ending top style attribute
+                //     ready: function (modal, trigger) { // Callback for Modal open. Modal and trigger parameters available.
+                //         alert("Ready");
+                //         console.log(modal, trigger);
+                // },
+                complete: function () { scanner.start(); return; } // Callback for Modal close
+            }
+            );
+
+        } else {
+            swal("Error!", "Invalid QR Code Please Check Again Later.!", "error");
+            // alert("Invalid QR Code, Please Check Again.!!!");
+            return;
+        }
+        // return result.data;
+        $(document).ready(function () {
+
+          
+
+            $("#claim-warranty").click(function () {
+                let productid = $('#product_id').text();
+                let jsonn = {
+                    uid: productid
+                };
+                // jsonn=JSON.parse(jsonn);
+                console.log(jsonn);
+                $.ajax({
+                    type: "POST",
+                    data: JSON.stringify(jsonn),
+                    contentType: 'application/json; charset=utf-8',
+                    dataType: 'json',
+                    async: false,
+                    url: "https://localhost:4500/setproductwarranty",
+                    success: function (data) {
+                        if (data.status == true) {
+                            swal("Good job!", "Successfully registered warranty", "success");
+                        } else {
+                            swal("Sorry!", "Something Went Wrong,Please Try again later.!", "error");
+
+                        }
+                    }
+
+
+                });
+            });
+            // $("#hideme").hide();
+
+            if (video.style.display == "none") {
+                $("#hideme").show();
+
+            }
+
+            $("#qr-submit").submit(function (e) {
+                e.preventDefault(); // avoid to execute the actual submit of the form.
+
+                var form = $(this);
+                var actionUrl = form.attr('action');
+
+                ajaxcall();
+            });
+        });
+
+        function ajaxcall() {
+            var form = $("#qr-submit");
+            var actionUrl = form.attr('action');
+            $.ajax({
+                type: "POST",
+                url: actionUrl,
+                data: form.serialize(),
+                dataType: 'application/json',
+                success: function (success) {
+                    console.log(success);
+                    alert(success);
+
+
+                }
+            });
+        }
+
+
+    }
+
+    // ####### Web Cam Scanning #######
+
+    const scanner = new QrScanner(video, result => setResult(camQrResult, result), {
+        onDecodeError: error => {
+            // camQrResult.textContent = error;
+            // camQrResult.style.color = 'inherit';
+        },
+        highlightScanRegion: true,
+        highlightCodeOutline: true,
+    });
+
+
+
+    scanner.start().then(() => {
+
+        // List cameras after the scanner started to avoid listCamera's stream and the scanner's stream being requested
+        // at the same time which can result in listCamera's unconstrained stream also being offered to the scanner.
+        // Note that we can also start the scanner after listCameras, we just have it this way around in the demo to
+        // start the scanner earlier.
+        QrScanner.listCameras(true).then(cameras => cameras.forEach(camera => {
+            const option = document.createElement('option');
+            option.value = camera.id;
+            option.text = camera.label;
+
+        }));
+    });
+
+
+
+    // for debugging
+    window.scanner = scanner;
+
+</script>
+
+
+</html>

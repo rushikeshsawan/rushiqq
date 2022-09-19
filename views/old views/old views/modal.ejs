@@ -1,0 +1,41 @@
+
+
+  <!-- Modal Structure -->
+  <div id="modal1" class="modal">
+    <div class="modal-content">
+      <h4>Add New Product</h4>
+      <form id="idForm" action="/addnewproduct" method="post">
+        <div class="mb-3">
+          <label for="exampleInputEmail1" class="form-label">Product ID</label>
+          <input type="text" name="pid" placeholder="Enter Product ID" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+          
+        <div class="mb-3">
+          <label for="exampleInputPassword1" class="form-label">Brand Name</label>
+          <input type="text" placeholder="Enter Brand Name" name="bname" class="form-control" id="exampleInputPassword1">
+        </div>
+        <div class="mb-3">
+            <label for="exampleInputPassword1" class="form-label">Mobile Number</label>
+            <input type="number" placeholder="Enter Mobile Number" name="mobile" class="form-control" id="exampleInputPassword1">
+          </div>
+          <div class="mb-3">
+            <label for="exampleInputPassword1" class="form-label">Email Address</label>
+            <input type="email" placeholder="Enter Email Address" name="email" class="form-control" id="exampleInputPassword1">
+          </div>
+        <div class="mb-3 form-check">
+          <input type="checkbox" class="form-check-input" id="exampleCheck1">
+          <label class="form-check-label" for="exampleCheck1">Check me out</label>
+        </div>
+        <div class="text-center"><button  class="btn waves-effect waves-light" type="submit" name="action">Submit
+            <i class="material-icons right">send</i>
+          </button></div>
+        
+            <!-- <button href="#!" class=" modal-close waves-effect waves-green btn-flat">Submit</a> -->
+        </div>
+        
+      </form>
+    </div>
+    <!-- <div class="modal-footer text-center">
+      <a href="#!" class="text-center modal-close waves-effect waves-green btn-flat">Agree</a>
+      <a href="#!" class="text-center modal-close waves-effect waves-green btn-flat">DisAgree</a>
+    </div> -->
+  </div>

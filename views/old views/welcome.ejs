@@ -1,0 +1,135 @@
+<% if(session.user_id){ %>
+  <!DOCTYPE html>
+  <html lang="en">
+
+  <head>
+    <meta charset="UTF-8">
+    <title>Authic</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
+    <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.2/css/materialize.min.css'>
+    <link rel='stylesheet' href='https://fonts.googleapis.com/icon?family=Material+Icons'>
+    <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css'>
+    <link rel="stylesheet" href="/assets/matstyle.css">
+
+  </head>
+  <style>
+    html {
+      scroll-behavior: smooth;
+    }
+
+    #hidethis {
+      /* overflow-y: scroll; */
+    }
+
+    #product-detailss {
+      /* overflow-y: visible; */
+
+    }
+  </style>
+  <title>Welcome <%= session.user_id %>
+  </title>
+
+  <body>
+
+
+    <!-- partial -->
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js'></script>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.2/js/materialize.min.js'></script>
+    <!-- <script src='https://codepen.io/j_holtslander/pen/pLNzQb.js'></script> -->
+    <script src="/assets/matscript.js"></script>
+    
+   
+    <%- include('matuppernav.ejs') %>
+      <%- include('matlowernav.ejs') %>
+        <%- include('mattab1.ejs') %>
+          <%- include('matcard.ejs') %>
+            <%- include('matmodal1.ejs') %>
+              <%- include('matfooter.ejs') %>
+
+
+  </body>
+  <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+  <script>
+
+    document.addEventListener('DOMContentLoaded', function () {
+      var elems = document.querySelectorAll('.sidenav');
+      var instances = M.Sidenav.init(elems, options);
+    });
+
+    // Or with jQuery
+
+    $(document).ready(function () {
+      $('.sidenav').sidenav();
+    });
+    // add new product
+    $("#idForm").submit(function (e) {
+
+      e.preventDefault(); // avoid to execute the actual submit of the form.
+
+      var form = $(this);
+      var actionUrl = form.attr('action');
+
+      $.ajax({
+        type: "POST",
+        url: actionUrl,
+        data: form.serialize(), // serializes the form's elements.
+        success: function (data) {
+          $('#idForm').trigger("reset");
+          console.log(data);
+          if ((data[0]) == true) {
+            // Materialize.toast('Record Inserted Successfully!', 5000);  
+            swal("Good job!", "Record Inserted Successfully!", "success");
+            // M.toast({html: 'Record Inserted Successfully!'});
+          } else {
+            swal("Sorry!", "Product Already Exist", "error");
+            // Materialize.toast('Record Insertion Failed!', 5000);  
+          };
+
+          // alert(data); // show response from the php script.
+        }
+      });
+
+    });
+    // add new product
+
+
+
+
+    $(document).ready(function () {
+      $('.modal').modal();
+    }
+    )
+   
+
+    const params = window.location.href;
+    let hidden = document.getElementById('hidethis');
+    let enlargediv = document.getElementById('product-details');
+         <% if (pname) { 
+          %>
+        $('html, body').animate({
+          scrollTop: $(enlargediv).offset().top
+        }, 2000);
+      $.scrollTo($(enlargediv), 0);
+          // $(enlargediv).scroll();
+          <%
+         } else { %>
+
+      hidden.style.display = 'none';
+          <%
+         }
+         %>
+          if (params.search('productdetails') > 0) {
+      // enlargediv.removeClass('medium');
+      // enlargediv.removeClass('large');
+      hidden.style.display = 'block';
+
+    }
+    console.log(params.search('productdetails'));
+
+
+  </script>
+
+  </html>
+  <% }else{ %>
+    <script> document.location.href = '/' </script>
+    <% } %>

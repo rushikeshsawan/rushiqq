@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<%-
+include ('components/header.ejs') %>
+
+<body class="g-sidenav-show   bg-gray-100">
+  <div class="min-height-300 bg-primary position-absolute w-100"></div>
+ <%- include ('components/leftsidenav.ejs') %>
+  <main class="main-content position-relative border-radius-lg ">
+<%- include ('components/navbar.ejs') %>
+<%- include ('components/rightsidenav.ejs') %>
+<%- include ('components/unsoldtable.ejs') %>
+<%- include ('components/unsoldtransactionmodal.ejs') %>
+<%- include ('components/jsscripts.ejs') %>
+
+   
+    
+  
+
+  
+ 
+</body>
+<script>
+
+  //   document.addEventListener('DOMContentLoaded', function() {
+  //     var elems = document.querySelectorAll('.sidenav');
+  //     var instances = M.Sidenav.init(elems, options);
+  //   });
+
+  // Or with jQuery
+
+
+
+  var actionUrl = "https://localhost:4500/totalunsold";
+
+  // $.post(actionUrl, function (data) {
+  //     for(let i=0;i<data.length;i++){
+
+  //         console.log(data);
+  //     }
+  //     // console.log(data.success);
+  // });
+
+  $(document).on("click", ".open-AddBookDialog", function () {
+      var product_id = $(this).data('id');
+      const jsonn = {
+          uid: product_id
+      }
+
+      $.ajax({
+          type: "POST",
+          data: jsonn,
+          url: "https://localhost:4500/gettransactiondetailsunsold",
+          success: function (data) {
+              let dataa = data.success;
+              console.log(dataa);
+              let blockHash = dataa[0]['blockHash'];
+              let blockNumber = dataa[0]['blockNumber'];
+              let cumulativeGasUsed = dataa[0]['cumulativeGasUsed'];
+              let date = dataa[0]['date'];
+              let from_address = dataa[0]['from_address'];
+              let gasUsed = dataa[0]['gasUsed'];
+              let to_address = dataa[0]['to_address'];
+              let transactionHash = dataa[0]['transactionHash'];
+              let transactionindex = dataa[0]['transactionIndex'];
+              $('#blockHash').html(blockHash);
+              $('#blockNo').html(blockNumber);
+              $('#cgu').html(cumulativeGasUsed);
+              $('#tdd').html(date);
+              $('#fa').html(from_address);
+              $('#ta').html(to_address);
+              $('#thh').html(transactionHash);
+              $('#gu').html(gasUsed);
+              $('#ti').html(transactionindex);
+              $(".fulltans").attr("href", "https://ropsten.etherscan.io/tx/"+transactionHash);
+          },
+          error: function (error) {
+              console.log("error here " + error);
+          }
+      });
+
+
+  });
+  //  
+
+
+
+  $.ajax({
+      type: "POST",
+      url: actionUrl,
+      success: function (data) {
+        console.log(data);
+          let dataa = data.success;
+
+
+          function timeConverter(timee) {
+              var s = new Date(timee).toLocaleDateString("en-IN");
+              var s1 = new Date(timee).toLocaleTimeString("en-IN");
+              return (s + " " + s1);
+          }
+
+
+          for (var i = 0; i < dataa.length; i += 1) {
+              console.log(dataa[i]['manu_date'] * 1000);
+              $(".unsoldtable").append("<tr><td>" + (i + 1) + "</td>" +
+                  "<td>" + dataa[i]['qr_encrypt'] + "</td>" +
+                  "<td>" + dataa[i]['bname'] + "</td>" +
+                  "<td>" + (timeConverter(parseInt(dataa[i]['manu_date'] * 1000))) + "</td>" +
+                  "<td>" + dataa[i]['period'] + " Months </td>" +
+                  "<td><a data-bs-toggle='modal' class='open-AddBookDialog' data-id='"+ dataa[i]['product_id']+"'data-bs-target='#unsoldtransactionmodal'><span class='btn badge badge-sm bg-gradient-success'>Transaction Details</span> </a></td>" +
+                  "<td><a href='https://localhost:4500/assets/Images/qrimages/"+ dataa[i]['qr_encrypt']+".png' download='"+dataa[i]['qr_encrypt']+".png'><img src='https://localhost:4500/assets/Images/qrimages/"+ dataa[i]['qr_encrypt']+".png' alt='W3Schools' width='70' height='70'> </a></td>"+
+
+                  "</tr>");
+          }
+          //     $('table > tbody  > tr').each(function (index, tr) {
+          //   console.log(index);
+          //   console.log(tr);
+          // });
+          console.log(dataa);
+
+
+          // console.log(dataa[0]['bname']);
+          // if((data[0])==true){
+          //   // Materialize.toast('Record Inserted Successfully!', 5000);  
+          //   swal("Good job!", "Record Inserted Successfully!", "success");
+          //   // M.toast({html: 'Record Inserted Successfully!'});
+          // }else{
+          //   swal("Sorry!", "Product Already Exist", "error");
+          //   // Materialize.toast('Record Insertion Failed!', 5000);  
+          // };
+
+          // alert(data); // show response from the php script.
+      }
+  });
+  // });
+
+
+
+
+
+
+</script>
+
+</html>

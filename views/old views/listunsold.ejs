@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Authic</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
+    <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.2/css/materialize.min.css'>
+    <link rel='stylesheet' href='https://fonts.googleapis.com/icon?family=Material+Icons'>
+    <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css'>
+    <link rel="stylesheet" href="/assets/matstyle.css">
+
+</head>
+<style>
+    html {
+        scroll-behavior: smooth;
+    }
+
+    #hidethis {
+        /* overflow-y: scroll; */
+    }
+
+    #product-detailss {
+        /* overflow-y: visible; */
+
+    }
+</style>
+<title>Welcome </title>
+
+<body>
+
+    <%- include('matuppernav.ejs') %>
+        <%- include('matlowernav.ejs') %>
+
+            <%- include('unsoldtable.ejs') %>
+                <%- include('gettransactiondetailsunsold.ejs') %>
+                    <%- include('matfooter.ejs') %>
+                        <!-- partial -->
+                        <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js'></script>
+                        <script
+                            src='https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.2/js/materialize.min.js'></script>
+                        <!-- <script src='https://codepen.io/j_holtslander/pen/pLNzQb.js'></script> -->
+                        <script src="/assets/matscript.js"></script>
+
+</body>
+<script src=”https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/moment.min.js”></script>
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+<script>
+
+    //   document.addEventListener('DOMContentLoaded', function() {
+    //     var elems = document.querySelectorAll('.sidenav');
+    //     var instances = M.Sidenav.init(elems, options);
+    //   });
+
+    // Or with jQuery
+
+
+
+    var actionUrl = "https://localhost:4500/totalunsold";
+
+    // $.post(actionUrl, function (data) {
+    //     for(let i=0;i<data.length;i++){
+
+    //         console.log(data);
+    //     }
+    //     // console.log(data.success);
+    // });
+
+    $(document).on("click", ".open-AddBookDialog", function () {
+        var product_id = $(this).data('id');
+        const jsonn = {
+            uid: product_id
+        }
+
+        $.ajax({
+            type: "POST",
+            data: jsonn,
+            url: "https://localhost:4500/gettransactiondetailsunsold",
+            success: function (data) {
+                let dataa = data.success;
+                console.log(dataa);
+                let blockHash = dataa[0]['blockHash'];
+                let blockNumber = dataa[0]['blockNumber'];
+                let cumulativeGasUsed = dataa[0]['cumulativeGasUsed'];
+                let date = dataa[0]['date'];
+                let from_address = dataa[0]['from_address'];
+                let gasUsed = dataa[0]['gasUsed'];
+                let to_address = dataa[0]['to_address'];
+                let transactionHash = dataa[0]['transactionHash'];
+                let transactionindex = dataa[0]['transactionIndex'];
+                $('#blockHash').val(blockHash);
+                $('#blockNo').val(blockNumber);
+                $('#cgu').val(cumulativeGasUsed);
+                $('#td').val(date);
+                $('#fa').val(from_address);
+                $('#ta').val(to_address);
+                $('#th').val(transactionHash);
+                $('#gu').val(gasUsed);
+                $('#ti').val(transactionindex);
+            },
+            error: function (error) {
+                console.log("error here " + error);
+            }
+        });
+
+
+    });
+    //  
+
+
+
+    $.ajax({
+        type: "POST",
+        url: actionUrl,
+        success: function (data) {
+            let dataa = data.success;
+
+
+            function timeConverter(timee) {
+                var s = new Date(timee).toLocaleDateString("en-IN");
+                var s1 = new Date(timee).toLocaleTimeString("en-IN");
+                return (s + " " + s1);
+            }
+
+
+            for (var i = 0; i < dataa.length; i += 1) {
+                console.log(dataa[i]['manu_date'] * 1000);
+                $("table").append("<tr><td>" + (i + 1) + "</td>" +
+                    "<td>" + dataa[i]['product_id'] + "</td>" +
+                    "<td>" + dataa[i]['bname'] + "</td>" +
+                    "<td>" + dataa[i]['mobile'] + "</td>" +
+                    "<td>" + dataa[i]['email'] + "</td>" +
+                    "<td>" + (timeConverter(parseInt(dataa[i]['manu_date'] * 1000))) + "</td>" +
+                    "<td>" + dataa[i]['period'] + " Months </td>" +
+                    "<td><button class='open-AddBookDialog' data-id='" + dataa[i]['product_id'] + "' data-target='gettransactiondetails' >Get Transaction Details </button</td>" +
+                    "<td><a href='assets/Images/qrimages/"+ dataa[i]['product_id']+".png' download><img src='assets/Images/qrimages/"+ dataa[i]['product_id']+".png' alt='W3Schools' width='100' height='100'> </a></td>"+
+
+                    "</tr>");
+            }
+            //     $('table > tbody  > tr').each(function (index, tr) {
+            //   console.log(index);
+            //   console.log(tr);
+            // });
+            console.log(dataa);
+
+
+            // console.log(dataa[0]['bname']);
+            // if((data[0])==true){
+            //   // Materialize.toast('Record Inserted Successfully!', 5000);  
+            //   swal("Good job!", "Record Inserted Successfully!", "success");
+            //   // M.toast({html: 'Record Inserted Successfully!'});
+            // }else{
+            //   swal("Sorry!", "Product Already Exist", "error");
+            //   // Materialize.toast('Record Insertion Failed!', 5000);  
+            // };
+
+            // alert(data); // show response from the php script.
+        }
+    });
+    // });
+
+
+
+
+
+
+</script>
+
+</html>

@@ -1,0 +1,68 @@
+<% if(prid){ %>
+    <!DOCTYPE html>
+    <html lang="en">
+    <%- include ('components/header.ejs') %>
+
+        <body class="g-sidenav-show   bg-gray-100">
+            <h1> </h1>
+            <div class="min-height-300 bg-success position-absolute w-100"></div>
+            <%- include ('components/leftsidenav.ejs') %>
+                <main class="main-content position-relative border-radius-lg ">
+                    <%- include ('components/navbar.ejs') %>
+                        <%- include ('components/rightsidenav.ejs') %>
+                            <%- include ('components/jsscripts.ejs') %>
+                                <%- include ('components/claimwarrantyform.ejs') %>
+
+
+        </body>
+        <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+        <script>
+            $(".claimwarrantyhidden").hide();
+
+            $('form').submit(function (e) {
+                e.preventDefault();
+                let form = $(this);
+                let data = {};
+                $(this).find('input,select,textarea').each(function () {
+                    data[$(this).attr('name')] = $(this).val();
+                });
+                $(".claimwarrantyhide").hide();
+                // document.getElementsByClassName('loading')[0].style.visibility = 'block';
+                $(".claimwarrantyhidden").show();
+
+                $('.loader').removeClass('d-none');
+                $.ajax({
+                    url: $(this).attr('action'),
+                    method: 'POST',
+                    data: data,
+                    success: function (data) {
+                        console.log(data);
+                        $('.loader').addClass('d-none');
+                        // form.trigger('reset');
+                        if (data.success == 'success') {
+
+                            swal("Good job!", "Form Submitted Successfully.!", "success");
+                            window.location.href = 'https://localhost:4500/usermanual';
+                        }
+                        else {
+                            swal("Sorry!", "Cannot save form.!", "error");
+
+                        }
+
+                    }
+                    ,
+                    error: function (error) {
+                        console.log(error);
+                        // form.trigger('reset');
+                        alert('Cannot Save Data');
+                        $('.loader').addClass('d-none');
+                        document.location.reload();
+                    }
+                });
+            });
+        </script>
+
+    </html>
+    <% }else{ %>
+        <script> document.location.href = '/' </script>
+        <% } %>

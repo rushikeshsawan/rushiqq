@@ -1,0 +1,66 @@
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-7 offset-2">
+            <div class="card mb-3">
+                <br><br>
+                <h3 class="text-center">Claim Warranty</h3>
+
+                <div class="container" style="column-count: 2; column-gap:10px;column-width: 10000px;">
+                    <form id="userdetails" action="setproductwarranty">
+                        <div class="mb-3">
+                            <label for="exampleInputEmail1" class="form-label">Full Name</label>
+                            <input type="text" name="fname" placeholder="Full Name" class="form-control" id="exampleInputEmail1"
+                                aria-describedby="emailHelp">
+                            <input type="hidden"   name="uid" value="<%= prid %>"   class="form-control" id="exampleInputEmail1"
+                                aria-describedby="emailHelp">
+
+                            <div class="mb-3">
+                                <label for="exampleInputEmail1" class="form-label">Email address</label>
+                                <input type="email" name="email" placeholder="Email address" class="form-control"
+                                    id="exampleInputEmail1" aria-describedby="emailHelp">
+                                <div id="emailHelp" class="form-text">We'll never share your email with anyone else.
+                                </div>
+                            </div>
+                            <div class="mb-3">
+                                <label for="exampleInputPassword1" class="form-label">Mobile Number</label>
+                                <input type="number" name="mobile" placeholder="Mobile Number" class="form-control"
+                                    id="exampleInputPassword1">
+                            </div>
+                            <div class="mb-3">
+                                <label for="exampleInputPassword1" class="form-label">Address Line 1</label>
+                                <input type="text" name="addr1" placeholder="Address Line 1" class="form-control"
+                                    id="exampleInputPassword1">
+                            </div>
+
+                            <div class="col-12 mb-4 d-flex justify-content-center text-center">
+                                <div class="p-2 bd-highlight">
+                                    <label for="exampleInputPassword1" class="form-label">Country</label>
+                                    <input type="text" name="country" placeholder="Country" class="form-control"
+                                        id="exampleInputPassword1">
+                                </div>
+                                <div class="p-2 bd-highlight">
+                                    <label for="exampleInputPassword1" class="form-label">State</label>
+                                    <input type="text" name="state" placeholder="State" class="form-control"
+                                        id="exampleInputPassword1">
+                                </div>
+                                <div class="p-2 bd-highlight">
+                                    <label for="exampleInputPassword1" class="form-label">City</label>
+                                    <input type="text" name="city" placeholder="City" class="form-control"
+                                        id="exampleInputPassword1">
+                                </div>
+
+                            </div>
+                            
+
+                            <div class="text-center">
+                                <button type="submit" class=" claimwarrantyhide btn btn-primary">Submit</button>
+                                <button class=" claimwarrantyhidden btn btn-dark" type="button" disabled>
+                                    <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+                                    Loading... 
+                                  </button>
+                            </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
