@@ -5,6 +5,7 @@
   <%- include ('components/header.ejs') %>
 
     <body class="g-sidenav-show   bg-gray-100">
+      <h1> </h1>
 
       <div class="min-height-300 bg-success position-absolute w-100"></div>
       <%- include ('components/leftsidenav.ejs') %>
@@ -15,13 +16,32 @@
                 <%- include ('components/jsscripts.ejs') %>
                   <%- include ('components/addnewproductmodal.ejs') %>
                     <%- include ('components/addbatchproductmodal.ejs') %>
+                    <%- include ('components/productdetailsmodal.ejs') %>
                       <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
                       <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
 
                       <script>
+                        var length= "<%= weight.length %>";
+                        console.log(length);
+                        let hww= JSON.stringify(<%- JSON.stringify(weight) %>);
+                        let hwww= '<%- weight %>';
+                        //  hww= JSON.parse(hww);
+                        hww=JSON.parse(hww);
+                        hwww=JSON.stringify(hwww);
+                        // hww=JSON.parse(hww);
+                        for(let i=0;i<hww.length;i++){
+                        $("#select").append(new Option(hww[i]['dname'], hww[i]['id'], true, false));
+                        // console.log();
+                      }
+                      // console.log(hww.length);
+                      // console.log(hwww);
+                      // hww=JSON.parse('[' + hww.replace(/}{/g, '},{') + ']');
+                      // hww= JSON.parse(hww);
+                      // console.log(hww);
+                        
 
-                        document.getElementsByClassName('loading')[0].style.visibility = 'hidden';
+                        // document.getElementsByClassName('loading')[0].style.visibility = 'hidden';
                         $(".addbatchproducthidden").hide();
                         $(".addnewproducthidden").hide();
 
@@ -31,7 +51,7 @@
                         let enlargediv = document.getElementById('product-details');
 
 
-                        hidden.style.display = 'none';
+                        // hidden.style.display = 'none';
 
 
                         if (params.search('productdetails') > 0) {
@@ -58,9 +78,11 @@
                           });
                           // if($(this).attr('action')==""
                           if ($(this).attr('action') == "/addbatchproduct") {
+                            // console.log(data);
                             $(".addbatchproducthide").hide();
                             // document.getElementsByClassName('loading')[0].style.visibility = 'block';
                             $(".addbatchproducthidden").show();
+
 
                           }
                           if ($(this).attr('action') == "/addnewproduct") {
@@ -79,6 +101,9 @@
                               console.log(data);
 
                               function gettime(timee) {
+                                if(timee==0){
+                                  return"-";
+                                }
                                 var a = new Date(timee * 1000);
                                 var months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
                                 var year = a.getFullYear();
@@ -97,29 +122,13 @@
                               let succ = data.successful;
                               let unsucc = data.unsuccessful;
                               if (data.addbatchproduct == "addbatchproduct") {
+                               
+                              
 
-                                if (data.successful.receipt.status == false) {
-                                  Swal.fire({
-                                    title: '<strong> <u>Amron Switches</u></strong>',
-                                    icon: 'danger',
-                                    html:
-                                      `Some Error Occured Please Check the Value or Try again Later.<br>`
-                                    ,
-                                    showCloseButton: true,
-                                    showCancelButton: true,
-                                    focusConfirm: false,
-                                    confirmButtonText:
-                                      '<i class="fa fa-thumbs-up"></i> Great!',
-                                    confirmButtonAriaLabel: 'Thumbs up, great!',
-                                    cancelButtonText:
-                                      '<i class="fa fa-thumbs-down"></i>',
-                                    cancelButtonAriaLabel: 'Thumbs down'
-                                  })
-                                }
-                                else {
+                                  
 
-
-
+                                
+///
                                   let msg = "<b> product Succesfully Inserted are-> <b>" + succ;
 
 
@@ -141,7 +150,8 @@
                                       '<i class="fa fa-thumbs-down"></i>',
                                     cancelButtonAriaLabel: 'Thumbs down'
                                   })
-                                }
+                                
+                                
 
 
                                 // swal("Good job!", "product added successfully->" + succ + "product not added successfully->" + unsucc, "success");
@@ -169,24 +179,26 @@
                                
 
                               } else {
+                                $('#productdetailsmodal').modal('show');
 
-                                $('#pname').html("Brand Name: " + data.success[0]);
-                                $('#rcurrent').html("Rated Current:  " + data.success[1]);
-                                $('#soperation').html("Switch Operation: " + data.success[2]);
-                                $('#msize').html("Module Size: " + data.success[3]);
-                                $('#material').html("Material: " + data.success[4]);
-                                $('#coo').html("Country Of Origin: " + data.success[5]);
-                                $('#pcolor').html("Product Color: " + data.success[6]);
+                                $('#ppname').html( data.success[0]);
+                                $('#rrcurrent').html( data.success[1]);
+                                $('#ssoperation').html(data.success[2]);
+                                $('#mmsize').html( data.success[3]);
+                                $('#mmaterial').html(data.success[4]);
+                                $('#cooo').html( data.success[5]);
+                                $('#ppcolor').html( data.success[6]);
                                 // $('#pweight').html(" Product Weight: " + data.success[7]);
                                 // $('#plength').html("Product Length: " + data.success[8]);
-                                $('#manudate').html("Manufacture Date: " + gettime(data.success[7]));
-                                $('#warr_start').html("Warranty Start: " + gettime(data.success[8]));
-                                $('#warr_end').html("Warranty End: " + gettime(data.success[9]));
-                                $('#pperiod').html("Warranty Period: " + data.success[10]);
+                                $('#mmanudate').html(  gettime(data.success[7]));
+                                $('#wwarr_start').html(  gettime(data.success[8]));
+                                $('#wwarr_end').html( gettime(data.success[9]));
+                                $('#pperiod').html( data.success[10]);
    
-                                hidden.style.display = 'block';
+                                // hidden.style.display = 'block';
+                                // if(data['status'] == true)
                               }
-                              } else if(data['status'] == true) {
+                              } else  {
                             $(".addnewproducthide").show();
                             $(".addnewproducthidden").hide();
                             let unsold = $('#unsoldnum').html();

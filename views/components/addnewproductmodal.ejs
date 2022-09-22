@@ -9,52 +9,75 @@
       </div>
      <div class="container">
       <form id="idForm" action="/addnewproduct" method="post">
-        <div class="mb-3">
-          <label for="exampleInputEmail1" class="form-label">Product ID</label>
-          <input type="text" name="pid" placeholder="Enter Product ID" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
-          
-        <div class="mb-3">
-          <label for="exampleInputPassword1" class="form-label">Brand Name</label>
-          <input type="text" placeholder="Enter Brand Name" name="bname" class="form-control" id="exampleInputPassword1">
+        
+        <div class="row">
+          <div class="col-md-9 register-right">
+           
+            <!-- <div class="tab-content" id="myTabContent"> -->
+                <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+                   
+                    <div class="row register-form">
+                        <div class="col-md-5 offset-2 text-center">
+                            <div class="form-group m-3">
+                              <label> Enter Product Id</label>
+                                <input type="number" class="form-control" name="pid" placeholder="Product Id *" required />
+                            </div>
+                            <div class="form-group m-3">
+                              <label>Rated Current</label>
+                                <input type="text" class="form-control" name="rcurrent" placeholder="Rated Current *" required />
+                            </div>
+                            <div class="form-group m-3">
+                              <label> Module Size</label>
+                                <input type="text" class="form-control" name="msize" placeholder="Module Size *" required />
+                            </div>
+                            <div class="form-group">
+                              <label>Country Of Origin</label>
+                                <input type="text" name="coo" class="form-control"  placeholder="Country Of Origin *" required />
+                            </div>
+                            <div class="row text-center">
+                              <div class="col-12 offset-7 text-center">
+                                <div class="form-group">
+                                  <label>Warranty Period</label>
+                                    <input type="number" name="period" class="form-control"  placeholder="Warranty Period " required />
+                                </div>
+
+                              </div>
+                            </div>
+                           
+                        </div>
+                        <div class="col-md-5">
+                            <div class="form-group m-3">
+                              <label> Enter Brand Name</label>
+                                <input type="text" name="bname" class="form-control" placeholder="Brand Name *" required />
+                            </div>
+                            <div class="form-group m-3">
+                              <label>Switch Operation</label>
+                                <input type="text"  name="soperation" class="form-control" placeholder="Switch Operation *" required />
+                            </div>
+                           
+                            <div class="form-group m-3">
+                              <label>Material</label>
+                                <input type="text" name="material" class="form-control" placeholder="Material " required />
+                            </div>
+                            <div class="form-group m-3">
+                              <label>Color</label>
+                                <input type="text" name="color" class="form-control" placeholder="Color " required />
+                            </div>
+                            <!-- <input type="submit" class="btnRegister"  value="Register"/> -->
+                        </div>
+                    </div>
+                </div>
+                
+                </div>
+            
         </div>
-        <div class="mb-3">
-            <label for="exampleInputPassword1" class="form-label">Rated Current</label>
-            <input type="text" placeholder="Enter Rated_Current" name="rcurrent" class="form-control" id="exampleInputPassword1">
-          </div>
-          <div class="mb-3">
-            <label for="exampleInputPassword1" class="form-label">Switch Operation</label>
-            <input type="text" placeholder="Enter Email Address" name="soperation" class="form-control" id="exampleInputPassword1">
-          </div>
-          <div class="mb-3">
-            <label for="exampleInputPassword1" class="form-label">Module Size</label>
-            <input type="text" placeholder="Enter Email Address" name="msize" class="form-control" id="exampleInputPassword1">
-          </div>
-          <div class="mb-3">
-            <label for="exampleInputPassword1" class="form-label">Material</label>
-            <input type="text" placeholder="Enter Email Address" name="material" class="form-control" id="exampleInputPassword1">
-          </div>
-          <div class="mb-3">
-            <label for="exampleInputPassword1" class="form-label">Country Of Origin</label>
-            <input type="text" placeholder="Enter Email Address" name="coo" class="form-control" id="exampleInputPassword1">
-          </div>
-          <div class="mb-3">
-            <label for="exampleInputPassword1" class="form-label">Color </label>
-            <input type="text" placeholder="Enter Color Name for Product" name="color" class="form-control" id="exampleInputPassword1">
-          </div>
-          <div class="mb-3">
-            <label for="exampleInputPassword1" class="form-label">Weight</label>
-            <input type="text" placeholder="Enter Weight of Product" name="weight" class="form-control" id="exampleInputPassword1">
-          </div>
-          <div class="mb-3">
-            <label for="exampleInputPassword1" class="form-label">Length</label>
-            <input type="text" placeholder="Enter Length Of product" name="length" class="form-control" id="exampleInputPassword1">
-          </div>
-          <div class="mb-3">
-            <label for="exampleInputPassword1" class="form-label"> Warranty Period </label>
-            <input type="number" placeholder="Enter Warranty Period For This Product" name="period" class="form-control" id="exampleInputPassword1">
-          </div> <div class="text-center">
-          <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
-       <button  class="addnewproducthide btn waves-effect waves-light bg-success" type="submit" name="action">Submit
+        
+      </div>
+      
+          <br>
+          <div class=" container text-center"> 
+            <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
+            <button  class="addnewproducthide btn waves-effect waves-light bg-success" type="submit" name="action">Submit
         <button class=" addnewproducthidden btn btn-dark" type="button" disabled>
           <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
           Loading...

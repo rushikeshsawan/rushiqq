@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "node login.js"
-},
+  },
   "author": "",
   "license": "ISC",
   "dependencies": {
@@ -24,6 +24,7 @@
     "https": "^1.0.0",
     "moment": "^2.29.4",
     "mysql": "^2.18.1",
+    "qr-code-styling": "^1.6.0-rc.1",
     "qr-image": "^3.2.0",
     "truffle-hdwallet-provider": "^0.0.3",
     "web3": "^1.7.5",

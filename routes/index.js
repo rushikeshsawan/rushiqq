@@ -166,10 +166,7 @@ router.post('/login', encoder, function (req, res, next) {
 
         }
 
-        res.render("index", {
-          error: "Email Incorrect",
-          session: req.session
-        });
+       
 
 
       })
@@ -426,6 +423,27 @@ router.post('/productdetails', encoder, function (req, res) {
   })();
 });
 
+router.post('/getdistributerdetails',encoder,(request,response)=>{
+    
+let did= request.body.did;
+let query = `SELECT * FROM distributers WHERE id= ${did}`;
+database.query(query, function (error, data) {
+  if(data){
+    response.json({
+      distributerdata: data[0].dmobile
+      });
+
+  }else{
+    response.json({
+      error: "error"
+      });
+
+  }
+
+
+});
+
+});
 
 
 router.post('/addbatchproduct', encoder, function (req, response) {
@@ -442,11 +460,30 @@ router.post('/addbatchproduct', encoder, function (req, response) {
     let unsuccessvar = [];
     let from = req.body.from;
     let to = req.body.to;
-
+let did;
+let dmobile= req.body.dmobile;
     // const sold = await getTotalsold(req.session.addre);
     // const unsold = await getTotalUnsold(req.session.addre);
 
     // let productid = req.body.pid;
+    let distributer= req.body.distributer;
+    console.log(distributer);
+    if (!Number.isInteger(parseInt(distributer))){
+      let query = `INSERT INTO distributers( uid,dname,dmobile) VALUES ('${req.session.uid}','${distributer}','${dmobile}')`;
+      database.query(query, function (error, data) {
+        console.log(query);
+did=data.insertId;
+        // console.log("database error for distributers->" + error);
+        // console.log("database success for distributers->" + data.insertId);
+
+      });
+
+      console.log("DISTRIBUTER not an integer");
+    } else {
+      did= parseInt(distributer);
+      console.log("DISTRIBUTER its an integer");
+
+    }
     let bname = req.body.bname;
     let color = req.body.color;
     let weight = req.body.weight;
@@ -460,6 +497,7 @@ router.post('/addbatchproduct', encoder, function (req, response) {
     let productid = req.body.pid;
     productid = parseInt(productid);
     if (!Number.isInteger(productid) && !Number.isInteger(period)) {
+      
       console.log("not an integer");
     } else {
       console.log("its an integer");
@@ -535,7 +573,7 @@ router.post('/addbatchproduct', encoder, function (req, response) {
               var qr_png = qr.image(urllink, { type: 'png' });
               qr_png.pipe(require('fs').createWriteStream('assets/Images/qrimages/' + enc + '.png'));
               var png_string = qr.imageSync(urllink, { type: 'png' });
-              let query = `INSERT INTO product_details( user_id, product_id, bname,rcurrent,soperation,manu_date,period,color,msize,material,coo,qr_encrypt) VALUES ('${req.session.uid}','${resp['1'][i]}','${bname}','${rcurrent}','${soperation}','${manu_date}','${period}','${color}','${msize}','${material}','${coo}','${enc}')`;
+              let query = `INSERT INTO product_details( user_id, product_id, bname,rcurrent,soperation,manu_date,period,color,msize,material,coo,qr_encrypt,dname) VALUES ('${req.session.uid}','${resp['1'][i]}','${bname}','${rcurrent}','${soperation}','${manu_date}','${period}','${color}','${msize}','${material}','${coo}','${enc}','${did}')`;
               database.query(query, function (error, data) {
 
                 console.log("database error" + error);
@@ -656,8 +694,8 @@ router.post('/addnewproduct', encoder, function (req, res) {
     let productid = req.body.pid;
     let bname = req.body.bname;
     let color = req.body.color;
-    let weight = req.body.weight;
-    let length = req.body.length;
+    // let weight = req.body.weight;
+    // let length = req.body.length;
     let period = req.body.period;
     let rcurrent = req.body.rcurrent;
     let soperation = req.body.soperation;
@@ -703,7 +741,7 @@ router.post('/addnewproduct', encoder, function (req, res) {
         var png_string = qr.imageSync(urllink, { type: 'png' });
 
         // console.log("mobile number is "+ mobile);
-        let query = `INSERT INTO product_details( user_id, product_id, bname,rcurrent,soperation,manu_date,period,color,weight,length,msize,material,coo,qr_encrypt) VALUES ('${req.session.uid}','${productid}','${bname}','${rcurrent}','${soperation}','${manu_date}','${period}','${color}','${weight}','${length}','${msize}','${material}','${coo}','${enc}')`;
+        let query = `INSERT INTO product_details( user_id, product_id, bname,rcurrent,soperation,manu_date,period,color,msize,material,coo,qr_encrypt) VALUES ('${req.session.uid}','${productid}','${bname}','${rcurrent}','${soperation}','${manu_date}','${period}','${color}','${msize}','${material}','${coo}','${enc}')`;
         // console.log(query);
         database.query(query, function (error, data) {
           if (data) {
@@ -715,10 +753,14 @@ router.post('/addnewproduct', encoder, function (req, res) {
               // console.log(query1);
               database.query(query1, function (error, data) {
                 if (data) {
+                  console.log(data);
                   res.json({
                     status: true,
                     productid: productid
                   });
+                }else{
+                  console.log("error ->"+error);
+                  console.log("query1 ->"+query1);
                 }
 
               });
@@ -754,18 +796,44 @@ router.post('/addnewproduct', encoder, function (req, res) {
 //  add new product end 
 
 
-
-
 // when login is success
 
 
 
-router.get("/welcome", function (req, res) {
-  (async () => {
+// router.get("/distributersdata", function (req, res) {
+ 
+  
+// console.log(dataaa);
 
+router.get("/welcome", function (req, res) {
+  
+    
+  //   console.log("dq here-> "+ JSON.stringify(dq));
+  // });
+
+
+  (async () => {
+    let dq;
     let dataa;
+    let q = `SELECT * FROM distributers ORDER BY id DESC`;
+    database.query(q, function (error, dsbase) {
+    
+  
+      if(dsbase){
+  
+        if (dsbase.length > 0) {
+          dq = dsbase;
+           
+          // console.log(data);
+  
+        }
+      }
+
+    
     let q = `SELECT * FROM transactiondetails`;
     database.query(q, function (error, data) {
+    
+
       if(data){
 
         if (data.length > 0) {
@@ -774,14 +842,21 @@ router.get("/welcome", function (req, res) {
   
         }
       }
+   
     });
+  });
 
     const sold = await getTotalsold(req.session.addre);
     const unsold = await getTotalUnsold(req.session.addre);
 
 
+    
+
 
     dataa = JSON.stringify(dataa);
+    // console.log("distributers here.!!!"+dq);
+// let hwww=JSON.parse(dq);
+// console.log(hwww);
     // console.log(req.session.addre);
     res.render("welcome", {
       session: req.session,
@@ -797,7 +872,7 @@ router.get("/welcome", function (req, res) {
       msg: dataa,
       color: "",
       period: "",
-      weight: "",
+      weight: dq,
       length: ""
     });
 

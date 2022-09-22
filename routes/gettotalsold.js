@@ -28,6 +28,7 @@ route1.post('/totalsold',(response,request)=>{
         });
     });
 });
+
 route1.post('/totalunsold',(request,response)=>{
     let query = `select * from product_details where isSold=0`;
     // console.log(query);
@@ -41,8 +42,36 @@ route1.post('/totalunsold',(request,response)=>{
     // dataa= JSON
 // console.log('test');
 });
+
+
+route1.post('/getdistributerunsold',encoder,(request,response)=>{
+    let query = `SELECT COUNT(product_details.isSold), distributers.dname, distributers.dmobile FROM product_details LEFT JOIN distributers ON product_details.dname = distributers.id WHERE product_details.isSold=0 GROUP BY product_details.dname`;
+    database.query(query, function (error, data) {
+      if(data){
+        response.json({
+          success: data
+          });
+    
+      }else{
+        response.json({
+          error: "error"
+          });
+    
+      }
+    
+    
+    });
+  
+  
+  });
 route1.get('/listunsold',(request,response)=>{
     response.render('listunsold',{
+        layout:false,
+        session: request.session
+    });
+});
+route1.get('/unsoldgroupdistributer',(request,response)=>{
+    response.render('unsoldgroupdistributer',{
         layout:false,
         session: request.session
     });

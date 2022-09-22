@@ -67,92 +67,21 @@
       <br>
       <div class="row mt-4">
         <div class="col-lg-6 mb-lg-0 mb-4">
-        <div id="product-details" class="card pt-5">
-
-<div class="card-content text-center" id="product-details">
-  <h5 class=" text-center"><strong> Get Product Details.!</strong></h5>
+          <div class="card text-center">
   
-  <!-- <h5 class="card-title center-align" id="pid" ><strong>Product Id:  <%= pid %></strong></h5> -->
-  <form action="/productdetails" method="post" class="center-align">
-    <div class="row g-3 align-items-center">
-
-    <div class="col-auto offset-4 mb-3">
-    <input type="text" class="form-control" placeholder="Enter Product ID here." name="productid"></div></div>
-    <button type="submit" href="#profile-section1" class="btn btn-dark center-align"> submit</button>
-  </form>
-  <div id="spacehide" style="display: none;">
-<br><br>
-<br>
-</div>
-  <div id="hidethis">
-
-    <h6>
-      <spam id="pname"  class="text-dark">Name: </spam>
-     
-    </h6>
-    <hr>
-    <h6>
-      <spam id="rcurrent" class="text-dark">Rated Current:</spam>
-     
-    </h6>
-    <hr>
-    <h6>
-      <spam id="soperation" class="text-dark">Switch Operation: </spam>
-     
-    </h6>
-    <hr>
-    <h6>
-      <spam id="msize" class="text-dark">Module Size:</spam>
-     
-    </h6>
-    <hr>
-    <h6>
-      <spam id="material" class="text-dark"> Material:</spam>
-     
-    </h6>
-    <hr>
-    <h6>
-      <spam id="coo" class="text-dark">Country Of Origin:</spam>
-     
-    </h6>
-    <hr>
-    <h6>
-      <spam id="pcolor" class="text-dark">Product Color: </spam>
-     
-    </h6>
-    <hr>
-  
-    <h6>
-      <spam id="pweight" class="text-dark">Product Weight:</spam>
-     
-    </h6>
-    <hr>
-    <h6>
-      <spam id="plength" class="text-dark">Product Length:</spam>
+            <div class="card-content pt-5 center-align" >
+              <h5 class="card-title center-align"><strong>Add Products in Batch</strong></h5><br>
+            
+            
+              <button type="button" data-bs-toggle="modal" data-bs-target="#addbatchproductmodal" class="btn btn-dark center-align center-align btn modal-trigger">Add Product</button>
+            
+            </div>
+            <br><br>
+            <br><br>
+            <br>
+            
+            </div>
       
-    </h6><hr>
-    <h6>
-      <spam id="manudate" class="text-dark">Manufacture Date:</spam>
-     
-    </h6>
-    <hr> <h6>
-      <spam id="warr_start" class="text-dark">Warranty Start:</spam>
-     
-    </h6>
-    <hr> <h6>
-      <spam id="warr_end" class="text-dark">Warranty End:</spam>
-     
-    </h6>
-    <hr> <h6>
-      <spam id="pperiod" class="text-dark">Warranty Period:</spam>
-     
-    </h6>
-    <hr>
-
-  </div>
-
-</div>
-</div>
         </div>
         <div class="col-lg-6">
         <div class="card text-center">
@@ -173,20 +102,92 @@
       </div>
       <div class="row mt-4">
         <div class="col-lg-6 offset-3">
-          <div class="card text-center">
-  
-  <div class="card-content pt-5 center-align" >
-    <h5 class="card-title center-align"><strong>Add Products in Batch</strong></h5><br>
-  
-  
-    <button type="button" data-bs-toggle="modal" data-bs-target="#addbatchproductmodal" class="btn btn-dark center-align center-align btn modal-trigger">Add Product</button>
-  
-  </div>
-  <br><br>
-  <br><br>
-  <br>
-  
-  </div>
+          <div id="product-details" class="card pt-5">
+
+            <div class="card-content text-center" id="product-details">
+              <h5 class=" text-center"><strong> Get Product Details.!</strong></h5>
+              
+              <!-- <h5 class="card-title center-align" id="pid" ><strong>Product Id:  <%= pid %></strong></h5> -->
+              <form action="/productdetails" method="post" class="center-align">
+                <div class="row g-3 align-items-center">
+            
+                <div class="col-auto offset-4 mb-3">
+                <input type="text" class="form-control" placeholder="Enter Product ID here." name="productid"></div></div>
+                <button type="submit" href="#profile-section1" class="btn btn-dark center-align"> submit</button>
+              </form>
+              <div id="spacehide" style="display: none;">
+            <br><br>
+            <br>
+            </div>
+              <!-- <div id="hidethis">
+            
+                <h6>
+                  <spam id="pname"  class="text-dark">Name: </spam>
+                 
+                </h6>
+                <hr>
+                <h6>
+                  <spam id="rcurrent" class="text-dark">Rated Current:</spam>
+                 
+                </h6>
+                <hr>
+                <h6>
+                  <spam id="soperation" class="text-dark">Switch Operation: </spam>
+                 
+                </h6>
+                <hr>
+                <h6>
+                  <spam id="msize" class="text-dark">Module Size:</spam>
+                 
+                </h6>
+                <hr>
+                <h6>
+                  <spam id="material" class="text-dark"> Material:</spam>
+                 
+                </h6>
+                <hr>
+                <h6>
+                  <spam id="coo" class="text-dark">Country Of Origin:</spam>
+                 
+                </h6>
+                <hr>
+                <h6>
+                  <spam id="pcolor" class="text-dark">Product Color: </spam>
+                 
+                </h6>
+                <hr>
+              
+                <h6>
+                  <spam id="pweight" class="text-dark">Product Weight:</spam>
+                 
+                </h6>
+                <hr>
+                <h6>
+                  <spam id="plength" class="text-dark">Product Length:</spam>
+                  
+                </h6><hr>
+                <h6>
+                  <spam id="manudate" class="text-dark">Manufacture Date:</spam>
+                 
+                </h6>
+                <hr> <h6>
+                  <spam id="warr_start" class="text-dark">Warranty Start:</spam>
+                 
+                </h6>
+                <hr> <h6>
+                  <spam id="warr_end" class="text-dark">Warranty End:</spam>
+                 
+                </h6>
+                <hr> <h6>
+                  <spam id="pperiod" class="text-dark">Warranty Period:</spam>
+                 
+                </h6>
+                <hr>
+            
+              </div> -->
+            
+            </div>
+            </div>
           </div>
 
         </div>

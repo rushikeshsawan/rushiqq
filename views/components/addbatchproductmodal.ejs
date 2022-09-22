@@ -1,20 +1,156 @@
-
 <!-- Modal -->
 <div class=" modal fade" id="addbatchproductmodal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-lg">
-      <div class="modal-content">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
       <div class="modal-header">
-          <h5 class="modal-title text-center" >Add Batch Products</h5>
-          <button type="button" class="btn-close bg-danger" data-bs-dismiss="modal" aria-label="Close"></button>
-        </div>
-       <div class="container">
-        <div class="loading">Loading&#8230;</div>
+        <h5 class="modal-title text-center">Add Batch Products</h5>
+        <button type="button" class="btn-close bg-danger" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="container">
+
         <form id="idForm" action="/addbatchproduct" method="post">
-          <div class="mb-3">
-            <!-- <label for="exampleInputEmail1" class="form-label">Product ID</label>
+          <div class="row">
+            <div class="col-md-9 register-right">
+
+              <!-- <div class="tab-content" id="myTabContent"> -->
+              <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+
+                <div class="row register-form">
+                  <div class="col-md-5 offset-2 text-center">
+
+                    <div class="m-3">
+                      <label for="exampleInputPassword1" class="form-label">Number Of Products</label>
+                      <input type="number" placeholder="Number Of Products" name="to" class="form-control"
+                        id="exampleInputPassword1">
+                    </div>
+                    <div class="m-3">
+                      <label for="exampleInputPassword1" class="form-label">Select Distributer</label>
+                      <select name="distributer" id="select" required class="form-control selectpiker"
+                        style="width:50%">
+                        <option value="1" disabled selected="selected">select distributer</option>
+                        <!-- <option value="2">Name-2</option>
+                        <option value="3">Name-3</option>
+                        <option value="4">Name-4</option>  -->
+                      </select>
+                    </div>
+                    <div class="form-group m-3">
+                      <label> Enter Product Id</label>
+                      <input type="number" class="form-control" name="pid" placeholder="Product Id *" required />
+                    </div>
+                    <div class="form-group m-3">
+                      <label>Rated Current</label>
+                      <input type="text" class="form-control" name="rcurrent" placeholder="Rated Current *" required />
+                    </div>
+                    <div class="form-group m-3">
+                      <label> Module Size</label>
+                      <input type="text" class="form-control" name="msize" placeholder="Module Size *" required />
+                    </div>
+                    <div class="form-group">
+                      <label>Warranty Period</label>
+                      <input type="number" name="period" class="form-control" placeholder="Warranty Period "
+                        required />
+                    </div>
+
+                    <div class="row text-center">
+                      <div class="col-12 offset-7 text-center">
+                        
+
+                      </div>
+                    </div>
+
+                  </div>
+                  <div class="col-md-5">
+                    <div class="form-group m-3">
+                      <label> Enter Brand Name</label>
+                      <input type="text" name="bname" class="form-control" placeholder="Brand Name *" required />
+                    </div>
+                    <div class="form-group m-3">
+                      <label>Distributer Mobile Number</label>
+                      <input type="text" id="dmobile" name="dmobile" class="form-control" placeholder="Distributer Mobile Number *"
+                        required />
+                    </div>
+                    <div class="form-group m-3">
+                      <label>Switch Operation</label>
+                      <input type="text" name="soperation" class="form-control" placeholder="Switch Operation *"
+                        required />
+                    </div>
+
+                    <div class="form-group m-3">
+                      <label>Material</label>
+                      <input type="text" name="material" class="form-control" placeholder="Material " required />
+                    </div>
+                    <div class="form-group m-3">
+                      <label>Color</label>
+                      <input type="text" name="color" class="form-control" placeholder="Color " required />
+                    </div>
+                    <div class="form-group">
+                      <label>Country Of Origin</label>
+                      <input type="text" name="coo" class="form-control" placeholder="Country Of Origin *" required />
+                    </div>
+                    <!-- <input type="submit" class="btnRegister"  value="Register"/> -->
+                  </div>
+                </div>
+              </div>
+
+            </div>
+
+          </div>
+          <script>
+            $(document).ready(function () {
+              $("#select").select2({
+                tags: true,
+                dropdownParent: $('#addbatchproductmodal'),
+                theme: "bootstrap-5",
+                // dropdownAutoWidth : true,
+                width: '100%'
+              });
+
+
+
+              $(document).on('change', '#select', function () {
+                
+                var category_id = $(this).val();
+                console.log(category_id);
+                if (category_id.length != 0) {
+                  $.ajax({
+                    type: 'POST',
+                    url: '/getdistributerdetails',
+                    cache: 'false',
+                    data: {did: category_id},
+                    success: function (data) {
+                      if(data.distributerdata){
+                        $('#dmobile').val(data.distributerdata);
+                        $('#dmobile').attr("disabled", true);
+                      }else{
+                        $('#dmobile').val("");
+                        $('#dmobile').prop("disabled", false);
+                      }
+                      // console.log(data.distributerdata);
+                      // $('#products').html(data);
+                    },
+
+                    error: function (jqXHR, textStatus, errorThrown) {
+                      // error
+                    }
+                  });
+                } else {
+                  $('#products').html('<option value=""> -- SELECT -- </option>');
+                }
+              });
+
+
+
+
+
+              // $('.js-example-basic-single').select2();
+            });
+
+          </script>
+          <!-- <div class="mb-3"> -->
+          <!-- <label for="exampleInputEmail1" class="form-label">Product ID</label>
             <input type="text" name="pid" placeholder="Enter Product ID" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"> -->
-            
-          <div class="mb-3">
+
+          <!-- <div class="mb-3">
             <label for="exampleInputPassword1" class="form-label">To</label>
             <input type="number" placeholder="Enter Product From" name="to" class="form-control" id="exampleInputPassword1">
           </div>
@@ -61,23 +197,25 @@
             <div class="mb-3">
               <label for="exampleInputPassword1" class="form-label"> Warranty Period </label>
               <input type="number" placeholder="Enter Warranty Period For This Product" name="period" class="form-control" id="exampleInputPassword1">
-            </div> <div class=" text-center">
+            </div>-->
+          <div class=" text-center">
             <button type="button" class="addbatchproducthide btn btn-danger" data-bs-dismiss="modal">Close</button>
-         <button  class="addbatchproducthide btn waves-effect waves-light bg-success" type="submit" name="action">Submit
-              
+            <button class="addbatchproducthide btn waves-effect waves-light bg-success" type="submit"
+              name="action">Submit
+
             </button>
             <button class=" addbatchproducthidden btn btn-dark" type="button" disabled>
               <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
               Loading...
             </button>
           </div>
-            
-          
-              <!-- <button href="#!" class=" modal-close waves-effect waves-green btn-flat">Submit</a> -->
-          </div>
-          
-        </form>
-  </div>
+
+
+          <!-- <button href="#!" class=" modal-close waves-effect waves-green btn-flat">Submit</a> -->
       </div>
+
+      </form>
+    </div>
   </div>
+</div>
 </div>
