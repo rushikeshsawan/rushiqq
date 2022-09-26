@@ -5,7 +5,7 @@ const bodyParser = require("body-parser");
 const encoder = bodyParser.urlencoded();
 var qr = require('qr-image'); 
 const Web3 = require('web3');
-const mycontract = require('../smart contract/client/src/contracts/SimpleStorage.json');
+const mycontract = require('../SimpleStorage.json');
 var name = process.argv;
 
 

@@ -71,7 +71,7 @@ router.post('/signup', encoder, function (req, res, next) {
   }
 });
 const Web3 = require('web3');
-const mycontract = require('../smart contract/client/src/contracts/SimpleStorage.json');
+const mycontract = require('../SimpleStorage.json');
 const mycontractt = "0x25450a840B504cb1Bde85E61463e446F8890dDAB";
 var name = process.argv;
 
@@ -450,7 +450,7 @@ router.post('/addbatchproduct', encoder, function (req, response) {
 
 
   const Provider = require('@truffle/hdwallet-provider');
-  const MyContract = require('../smart contract/client/src/contracts/SimpleStorage.json');
+  const MyContract = require('../SimpleStorage.json');
   const address = '0x8e8Ef3E7D09D1fE0683f9B782860Bb00e41DE660';
   const privateKey = '4925f96bd005d94c76b3646593aba2615f4b65b197160bdf96ce9a586d41067e';
   const infuraUrl = 'https://ropsten.infura.io/v3/cecc686c7c684ee981dd2961d36d084c';
@@ -683,7 +683,7 @@ did=data.insertId;
 
 router.post('/addnewproduct', encoder, function (req, res) {
   const Provider = require('@truffle/hdwallet-provider');
-  const MyContract = require('../smart contract/client/src/contracts/SimpleStorage.json');
+  const MyContract = require('../SimpleStorage.json');
   const address = '0x8e8Ef3E7D09D1fE0683f9B782860Bb00e41DE660';
   const privateKey = '4925f96bd005d94c76b3646593aba2615f4b65b197160bdf96ce9a586d41067e';
   const infuraUrl = 'https://ropsten.infura.io/v3/cecc686c7c684ee981dd2961d36d084c';

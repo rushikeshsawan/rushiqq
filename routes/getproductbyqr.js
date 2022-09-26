@@ -6,7 +6,7 @@ const encoder = bodyParser.urlencoded();
 var cookieParser = require('cookie-parser');
 const moment = require('moment');
 const Web3 = require('web3');
-const mycontract = require('../smart contract/client/src/contracts/SimpleStorage.json');
+const mycontract = require('../SimpleStorage.json');
 
 rout.get("/getproductbyqr", function (req, res, next) {
     if(req.session.user_id){
