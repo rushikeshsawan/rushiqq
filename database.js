@@ -7,11 +7,20 @@ const mysql= require("mysql");
 //     password: "",
 //     database: "autic"
 // });
+
+
+// const connection = mysql.createConnection({
+//     host: "sql6.freesqldatabase.com",
+//     user: "sql6521838",
+//     password: "89mNjBXtxi",
+//     database: "sql6521838"
+// });
+
 const connection = mysql.createConnection({
-    host: "sql6.freesqldatabase.com",
-    user: "sql6521838",
-    password: "89mNjBXtxi",
-    database: "sql6521838"
+    host: "sql.freedb.tech",
+    user: "freedb_rushikesh",
+    password: "z89g43px8sYw*dx",
+    database: "freedb_auticrushi"
 });
  
 // connect to database
