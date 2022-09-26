@@ -872,7 +872,7 @@ router.get("/welcome", function (req, res) {
       msg: dataa,
       color: "",
       period: "",
-      weight: dq,
+      weight: "dq",
       length: ""
     });
 
