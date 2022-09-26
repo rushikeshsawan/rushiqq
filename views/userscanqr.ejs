@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<%- include ('components/header.ejs') %>
+
+    <body class="g-sidenav-show   bg-gray-100">
+        <div class="min-height-300 bg-success position-absolute w-100"></div>
+        
+            <main class="main-content position-relative border-radius-lg ">
+               <div class="m-5">
+                    <%- include ('components/rightsidenav.ejs') %>
+                        <%- include ('components/jsscripts.ejs') %>
+                        <%- include ('components/userscancontainer.ejs') %>
+
+                    </div>
+    </body>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <script> 
+    $("#claim-warranty").click(function () {
+                let productid = "<%= success[0]['qr_encrypt'] %> ";
+                let jsonn = {
+                    uid: productid
+                };
+                // jsonn=JSON.parse(jsonn);
+                console.log(jsonn);
+                $.ajax({
+                    type: "POST",
+                    data: JSON.stringify(jsonn),
+                    contentType: 'application/json; charset=utf-8',
+                    dataType: 'json',
+                    async: false,
+                    url: "https://localhost:4500/setwarr",
+                    success: function (data) {
+                        if (data.status == true) {
+                            window.location.replace("https://localhost:4500/claimwarranty");
+                        } else {
+                            swal("Sorry!", "Something Went Wrong,Please Try again later.!", "error");
+
+                        }
+                    }
+
+
+                });
+            });
+            // $("#hideme").hide();
+
+    console.log("<%= JSON.stringify(success) %>");
+    </script>
+    </html>

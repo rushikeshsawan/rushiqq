@@ -1,0 +1,107 @@
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-8 offset-2">
+            <div class="card mb-4">
+              <br><br>
+   <h3 class="text-center"><% if(success[0]['qr_encrypt']=="Null"){
+    %>INVALID PRODUCT <span style="color: rgb(255, 0, 0);">&nbsp;&#10008;</span>
+    <br><br><br><Br>
+    <br><br><h5 class="text-center" style="color: rgb(255, 0, 0);"><b>This Product is Not Geniune. Please Contact Your Vendor</b></h5>
+    <br><br><br><Br><br><br><br><br>
+    <%
+   }else{
+    %> This Product Is Geniune <span style="color: rgb(0, 174, 255);">&nbsp;&#9989;</span></h3>
+    
+  <div class="container offset-2" >
+    <div class="row">
+    <div class="col-7">
+    <table class="table table-borderless" cellspacing="15">
+      <thead class="center-align">
+        <tr class="center-align">
+          <!-- <th colspan="2" class="center-align"><h3>All Product Details.</h3></th> -->
+          
+          
+        </tr>
+      </thead>
+      <%
+      function timeConverter(timee) {
+        if(timee==""){
+          return "-"
+        }
+        var s = new Date(timee).toLocaleDateString("en-IN");
+        var s1 = new Date(timee).toLocaleTimeString("en-IN");
+        return (s + " " + s1);
+      }
+      %>
+      <tbody>
+        
+        <tr>
+          <td class="center-align"><strong>Product-id</strong></td>
+          <td id="product_id"><%= success[0]['qr_encrypt'].substring(0, 25) %>...</td>
+         
+          
+        </tr>
+        <tr>
+          <td class="center-align"><strong>brand name</strong> </td>
+          <td id="bname"><%= success[0]['bname'] %></td>
+          
+        </tr>
+        <tr>
+          <td class="center-align"><strong>Manufacture Date</strong></td>
+          <td id="manu_date"><%= timeConverter(parseInt(success[0]['manu_date']* 1000)) %></td>
+        </tr>
+        <tr>
+          <td class="center-align"><strong>Country Of Origin</strong></td>
+          <td id="coo"><%= success[0]['coo'] %></td>
+        </tr>
+        <tr>
+          <td class="center-align"><strong>material
+          </strong></td>
+          <td id="material"><%= success[0]['material'] %></td>
+        </tr>
+        <tr>
+          <td class="center-align"><strong>Module Size
+          </strong></td>
+          <td id="msize"><%= success[0]['msize'] %></td>
+        </tr>
+        <tr>
+          <td class="center-align"><strong>Rated Current
+          </strong></td>
+          <td id="rcurrent"><%= success[0]['rcurrent'] %></td>
+        </tr>
+        <tr>
+          <td class="center-align"><strong>Switch Operation
+          </strong></td>
+          <td id="soperation"><%= success[0]['soperation'] %></td>
+        </tr>
+        <tr>
+          <td class="center-align"><strong>Color</strong></td>
+          <td id="color"><%= success[0]['color'] %></td>
+        </tr>
+      
+        
+        <tr>
+          <td class="center-align"><strong>Warranty Start Date</strong></td>
+          <td id="warr-start"><%= timeConverter(parseInt(success[0]['warr_start']* 1000)) %></td>
+        </tr>
+        <!-- timeConverter(parseInt(dataa[i]['manu_date'] * 1000)) -->
+        <tr>
+          <td class="center-align"><strong>Warranty Expiration Date</strong></td>
+          <td id="warr_end"><%= timeConverter(parseInt(success[0]['warr_end']* 1000)) %></td>
+        </tr>
+        
+      </tbody>
+    </table><br> 
+    <div class="text-center">
+    <% if(success[0]['warr_start'] == ""){ %>
+      <a id="claim-warranty" class=" bg-primary text-white center-align waves-effect waves-light btn">Claim Warranty</a>
+
+      <% } %>
+      <a href="usermanual"  class=" bg-success text-white center-align waves-effect waves-light btn">User Manual</a>
+    </div>
+    </div></div>  
+  </div> 
+  <%
+   } %>
+</div>
+</div></div></div>
