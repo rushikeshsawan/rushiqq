@@ -69,10 +69,10 @@ let port=4500;
 sslserver.listen(port , ["192.168.179.60", "localhost" ],()=>{
      console.log(`Listening to requests on http://localhost:${port}`);
   }); 
-
-
+// "192.168.0.104" || "localhost"
+// process.env.PORT || 5000
 // set app port
-// app.listen(port, "192.168.0.104" || "localhost" ,() => {
+// app.listen(port, process.env.PORT || 5000 ,() => {
 //   console.log(`Listening to requests on http://localhost:${port}`);
 // });
 
