@@ -80,7 +80,7 @@ router.post('/login', encoder, function (req, res, next) {
 
 
   (async () => {
-
+ req.session.addre = "0x8e8Ef3E7D09D1fE0683f9B782860Bb00e41DE660";
     const provider = new Web3.providers.HttpProvider('https://ropsten.infura.io/v3/cecc686c7c684ee981dd2961d36d084c');
     const web3 = new Web3(provider);
     const id = await web3.eth.net.getId();
@@ -109,7 +109,7 @@ router.post('/login', encoder, function (req, res, next) {
               if (data[count].pass == password) {
                 req.session.uid = data[count].id;
                 req.session.user_id = data[count].name;
-                req.session.addre = account;
+//                 req.session.addre = account;
                 req.session.addre = "0x8e8Ef3E7D09D1fE0683f9B782860Bb00e41DE660";
                 sess = req.session;
 
