@@ -32,7 +32,7 @@ include ('components/header.ejs') %>
 
 
 
-  var actionUrl = "https://localhost:4500/getdistributerunsold";
+  var actionUrl = "/getdistributerunsold";
 
   // $.post(actionUrl, function (data) {
   //     for(let i=0;i<data.length;i++){
@@ -62,7 +62,7 @@ include ('components/header.ejs') %>
       $.ajax({
           type: "POST",
           data: jsonn,
-          url: "https://localhost:4500/gettransactiondetailsunsold",
+          url: "/gettransactiondetailsunsold",
           success: function (data) {
               let dataa = data.success;
               console.log(dataa);
