@@ -63,7 +63,7 @@ include ('components/header.ejs') %>
       $.ajax({
           type: "POST",
           data: jsonn,
-          url: "https://localhost:4500/gettransactiondetailsunsold",
+          url: "gettransactiondetailsunsold",
           success: function (data) {
               let dataa = data.success;
               console.log(dataa);
@@ -123,7 +123,7 @@ include ('components/header.ejs') %>
                   "<td>" + (timeConverter(parseInt(dataa[i]['manu_date'] * 1000))) + "</td>" +
                   "<td>" + dataa[i]['period'] + " Months </td>" +
                   "<td><a data-bs-toggle='modal' class='open-AddBookDialog' data-id='"+ dataa[i]['product_id']+"'data-bs-target='#unsoldtransactionmodal'><span class='btn badge badge-sm bg-gradient-success'>Transaction Details</span> </a></td>" +
-                  "<td><a  href='https://localhost:4500/assets/Images/qrimages/"+ dataa[i]['qr_encrypt']+".png' download='https://localhost:4500/assets/Images/qrimages/"+dataa[i]['qr_encrypt']+".png'><img src='https://localhost:4500/assets/Images/qrimages/"+ dataa[i]['qr_encrypt']+".png' alt='W3Schools' width='70' height='70'> </a></td>"+
+                  "<td><a  href='/assets/Images/qrimages/"+ dataa[i]['qr_encrypt']+".png' download='/assets/Images/qrimages/"+dataa[i]['qr_encrypt']+".png'><img src='/assets/Images/qrimages/"+ dataa[i]['qr_encrypt']+".png' alt='W3Schools' width='70' height='70'> </a></td>"+
 
                   "</tr>");
           }
