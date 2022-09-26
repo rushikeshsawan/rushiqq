@@ -66,7 +66,7 @@ const sslserver= https.createServer({
   cert:fs.readFileSync(path.join(__dirname,'cert','cert.pem'))
 },app)
 let port=4500;
-sslserver.listen(port , ["192.168.179.60", "localhost" ],()=>{
+sslserver.listen(process.env.PORT || 5000,()=>{
      console.log(`Listening to requests on http://localhost:${port}`);
   }); 
 // "192.168.0.104" || "localhost"
