@@ -77,7 +77,7 @@
                 contentType: 'application/json; charset=utf-8',
                 dataType: 'json',
                 async: false,
-                url: "https://localhost:4500/getproductdetails",
+                url: "/getproductdetails",
                 success: function (data) {
                     function timeConverter(timee) {
                         // timee=1662535771 *1000;
@@ -153,7 +153,7 @@
 
             // $.ajax({
             //     type: "POST",
-            //     url: "https://localhost:4500/getproductdetails",
+            //     url: "/getproductdetails",
             //     data: jsonn,
             //     dataType: 'application/json',
             //     success: function (success) {
@@ -220,10 +220,10 @@
                     contentType: 'application/json; charset=utf-8',
                     dataType: 'json',
                     async: false,
-                    url: "https://localhost:4500/setwarr",
+                    url: "/setwarr",
                     success: function (data) {
                         if (data.status == true) {
-                            window.location.replace("https://localhost:4500/claimwarranty");
+                            window.location.replace("/claimwarranty");
                         } else {
                             swal("Sorry!", "Something Went Wrong,Please Try again later.!", "error");
 
