@@ -110,7 +110,7 @@ router.post('/login', encoder, function (req, res, next) {
                 req.session.uid = data[count].id;
                 req.session.user_id = data[count].name;
                 req.session.addre = account;
-                // req.session.addre = "0x25450a840B504cb1Bde85E61463e446F8890dDAB";
+                req.session.addre = "0x8e8Ef3E7D09D1fE0683f9B782860Bb00e41DE660";
                 sess = req.session;
 
                 res.redirect('/welcome');
