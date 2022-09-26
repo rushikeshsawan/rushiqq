@@ -101,7 +101,7 @@ router.post('/login', encoder, function (req, res, next) {
     if (email && password) {
       const q = `SELECT * FROM userlogin where email="${email}"`;
       database.query(q, function (error, data) {
-
+console.log(error,data);
         if (data.length > 0) {
           for (var count = 0; count < data.length; count++) {
             if (data[count].email == email) {
