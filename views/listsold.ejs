@@ -33,7 +33,7 @@ include ('components/header.ejs')
 
 
 
-    var actionUrl = "https://localhost:4500/totalsold";
+    var actionUrl = "/totalsold";
 
     $(document).on("click", ".open-transactionDialog", function () {
         var product_id = $(this).data('id');
@@ -44,7 +44,7 @@ include ('components/header.ejs')
         $.ajax({
             type: "POST",
             data: jsonn,
-            url: "https://localhost:4500/gettransactiondetailssold",
+            url: "/gettransactiondetailssold",
             success: function (data) {
                 function gettime(timee) {
                                 var a = new Date(timee * 1000);
@@ -128,7 +128,7 @@ include ('components/header.ejs')
                    "<td class='text-center'>" + (timeConverter(parseInt(dataa[i]['warr_start'] * 1000))) + "</td>" +
                     "<td class='text-center'>" + (timeConverter(parseInt(dataa[i]['warr_end'] * 1000))) + " </td>" +
                     "<td class='text-center'><a data-bs-toggle='modal' class='open-transactionDialog' data-id='" + dataa[i]['product_id'] +"'data-bs-target='#soldtransactionmodal'><span class='btn badge badge-sm bg-gradient-success'>Transaction Details</span> </a> </td>" +
-                    "<td class='text-center'> <a  href='assets/Images/qrimages/"+dataa[i]['qr_encrypt'] +".png' download='https://localhost:4500/assets/Images/qrimages/"+dataa[i]['qr_encrypt']+".png'><img src='assets/Images/qrimages/"+dataa[i]['qr_encrypt'] +".png' alt='W3Schools' width='70' height='70'> </a></td>"+
+                    "<td class='text-center'> <a  href='assets/Images/qrimages/"+dataa[i]['qr_encrypt'] +".png' download='/assets/Images/qrimages/"+dataa[i]['qr_encrypt']+".png'><img src='assets/Images/qrimages/"+dataa[i]['qr_encrypt'] +".png' alt='W3Schools' width='70' height='70'> </a></td>"+
           
 
                     "</tr>");
