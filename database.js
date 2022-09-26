@@ -9,9 +9,9 @@ const mysql= require("mysql");
 // });
 const connection = mysql.createConnection({
     host: "sql6.freesqldatabase.com",
-    user: "sql6520158",
-    password: "wiiTzYq5Ls",
-    database: "sql6520158"
+    user: "sql6521838",
+    password: "89mNjBXtxi",
+    database: "sql6521838"
 });
  
 // connect to database
