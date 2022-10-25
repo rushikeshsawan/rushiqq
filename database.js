@@ -15,10 +15,17 @@ const mysql= require("mysql");
 //     password: "89mNjBXtxi",
 //     database: "sql6521838"
 // });
+// const connection = mysql.createConnection({
+//     host: "sql6.freesqldatabase.com",
+//     user: "sql6529132",
+//     password: "xjYudF5N92",
+//     database: "sql6529132"
+// });
+
 const connection = mysql.createConnection({
-    host: "sql6.freesqldatabase.com",
-    user: "sql6529132",
-    password: "xjYudF5N92",
+    host: "sql6.freemysqlhosting.net",
+    user: "sql6529186",
+    password: "2KkzYjDS8z",
     database: "sql6529132"
 });
 
