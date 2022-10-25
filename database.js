@@ -26,7 +26,7 @@ const connection = mysql.createConnection({
     host: "sql6.freemysqlhosting.net",
     user: "sql6529186",
     password: "2KkzYjDS8z",
-    database: "sql6529132"
+    database: "sql6529186"
 });
 
 // const connection = mysql.createConnection({
