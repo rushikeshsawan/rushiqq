@@ -22,11 +22,18 @@ const mysql= require("mysql");
 //     database: "sql6529132"
 // });
 
+// const connection = mysql.createConnection({
+//     host: "sql6.freemysqlhosting.net",
+//     user: "sql6529186",
+//     password: "2KkzYjDS8z",
+//     database: "sql6529186"
+// });
+
 const connection = mysql.createConnection({
-    host: "sql6.freemysqlhosting.net",
-    user: "sql6529186",
-    password: "2KkzYjDS8z",
-    database: "sql6529186"
+    host: "sql6.freesqldatabase.com",
+    user: "sql6585991",
+    password: "XqzC5Utf6I",
+    database: "sql6585991"
 });
 
 // const connection = mysql.createConnection({
